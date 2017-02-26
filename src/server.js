@@ -7,6 +7,13 @@ module.exports = (() => {
 		bodyParser = require('body-parser'),
 		SimpleMath = require('src/simpleMath');
 
+	const CommonPrefix = '/api/1.0',
+		MathPrefix = CommonPrefix + '/math',
+		MathAddPath = MathPrefix + '/add/:input1/:input2',
+		MathSubtractPath = MathPrefix + '/subtract/:input1/:input2',
+		MathSquarePath = MathPrefix + '/square/:input',
+		MathAccumulatePath = MathPrefix + '/accumulate';
+
 	class Server {
 
 		constructor() {
@@ -21,27 +28,27 @@ module.exports = (() => {
 				server = me._server,
 				math = me._math;
 
-			server.get('/math/add/:input1/:input2', function(req, res) {
+			server.get(MathAddPath, function(req, res) {
 				var input1 = Number(req.params.input1),
 					input2 = Number(req.params.input2);
 
 				res.send(math.add(input1, input2));
 			});
 
-			server.get('/math/subtract/:input1/:input2', function(req, res) {
+			server.get(MathSubtractPath, function(req, res) {
 				var input1 = Number(req.params.input1),
 					input2 = Number(req.params.input2);
 
 				res.send(math.subtract(input1, input2));
 			});
 
-			server.get('/math/square/:input', function(req, res) {
+			server.get(MathSquarePath, function(req, res) {
 				var input = Number(req.params.input);
 
 				res.send(math.square(input));
 			});
 
-			server.post('/math/accumulate', function(req, res) {
+			server.post(MathAccumulatePath, function(req, res) {
 				var params = req.body,
 					input = Number(params.data);
 
