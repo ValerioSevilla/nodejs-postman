@@ -4,12 +4,15 @@
 module.exports = (() => {
 
 	var express = require('express'),
+		bodyParser = require('body-parser'),
 		SimpleMath = require('src/simpleMath');
 
 	class Server {
 
 		constructor() {
 			this._server = express();
+			this._server.use(bodyParser.urlencoded({extended: true}));
+			this._server.use(bodyParser.json());
 			this._math = new SimpleMath();
 		}
 
