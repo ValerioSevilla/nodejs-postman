@@ -1,0 +1,42 @@
+[
+	{
+		"Input1": 0,
+		"Input2": 1
+	},
+	{
+		"Input1": -2,
+		"Input2": 5
+	},
+	{
+		"Input1": 10,
+		"Input2": 15
+	},
+	{
+		"Input1": 1,
+		"Input2": 2
+	},
+	{
+		"Input1": 5,
+		"Input2": 8
+	},
+	{
+		"Input1": 20,
+		"Input2": 35
+	},
+	{
+		"Input1": 123,
+		"Input2": 321
+	},
+	{
+		"Input1": 4,
+		"Input2": 7
+	},
+	{
+		"Input1": 2,
+		"Input2": 8
+	},
+	{
+		"Input1": 100,
+		"Input2": 1
+	}
+]

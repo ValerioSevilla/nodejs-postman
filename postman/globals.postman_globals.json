@@ -1,0 +1,15 @@
+{
+  "id": "17b3cd8f-7b00-d5c5-36bc-92afcf66e00a",
+  "name": "Postman Globals",
+  "values": [
+    {
+      "key": "LocalhostPort",
+      "value": "8080",
+      "type": "text",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "globals",
+  "_postman_exported_at": "2017-02-21T09:42:41.857Z",
+  "_postman_exported_using": "Postman/4.10.2"
+}
