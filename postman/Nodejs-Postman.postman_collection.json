@@ -1,0 +1,253 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Nodejs-Postman",
+		"_postman_id": "5317bcda-2372-e9d4-5680-3a0467fb003e",
+		"description": "Example of a Node.js server exposing a simple REST API and tests for that API using Postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var resultObject;",
+							"",
+							"try",
+							"{",
+							"    resultObject = JSON.parse(responseBody);",
+							"}",
+							"catch (ex)",
+							"{",
+							"    console.log(\"Unexpected response body: \" + ex);",
+							"    console.log(responseBody);",
+							"    ",
+							"    return;",
+							"}",
+							"",
+							"function defined(value) { return value !== null && value !== undefined; }",
+							"",
+							"var input1 = Number(defined(data.Input1) ? data.Input1 : environment.Input1),",
+							"    input2 = Number(defined(data.Input2) ? data.Input2 : environment.Input2);",
+							"",
+							"tests[\"Request succeeded\"] = responseCode.code === 200;",
+							"tests[\"Input included\"] = !!resultObject.input;",
+							"tests[\"Input is an object\"] = resultObject.input.constructor === Object;",
+							"tests[\"Input 1 is correct\"] = resultObject.input.input1 === input1;",
+							"tests[\"Input 2 is correct\"] = resultObject.input.input2 === input2;",
+							"tests[\"Correct result\"] = resultObject.result === (input1 + input2);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:{{LocalhostPort}}/api/1.0/math/add/{{Input1}}/{{Input2}}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Takes two input numbers and requests an Add operation."
+			},
+			"response": []
+		},
+		{
+			"name": "Subtract",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var resultObject;",
+							"",
+							"try",
+							"{",
+							"    resultObject = JSON.parse(responseBody);",
+							"}",
+							"catch (ex)",
+							"{",
+							"    console.log(\"Unexpected response body: \" + ex);",
+							"    console.log(responseBody);",
+							"    ",
+							"    return;",
+							"}",
+							"",
+							"function defined(value) { return value !== null && value !== undefined; }",
+							"",
+							"var input1 = Number(defined(data.Input1) ? data.Input1 : environment.Input1),",
+							"    input2 = Number(defined(data.Input2) ? data.Input2 : environment.Input2);",
+							"",
+							"tests[\"Request succeeded\"] = responseCode.code === 200;",
+							"tests[\"Input included\"] = !!resultObject.input;",
+							"tests[\"Input is an object\"] = resultObject.input.constructor === Object;",
+							"tests[\"Input 1 is correct\"] = resultObject.input.input1 === input1;",
+							"tests[\"Input 2 is correct\"] = resultObject.input.input2 === input2;",
+							"tests[\"Correct result\"] = resultObject.result === (input1 - input2);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:{{LocalhostPort}}/api/1.0/math/subtract/{{Input1}}/{{Input2}}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Takes two input numbers and requests a Subtract operation."
+			},
+			"response": []
+		},
+		{
+			"name": "Square",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var resultObject;",
+							"",
+							"try",
+							"{",
+							"    resultObject = JSON.parse(responseBody);",
+							"}",
+							"catch (ex)",
+							"{",
+							"    console.log(\"Unexpected response body: \" + ex);",
+							"    console.log(responseBody);",
+							"    ",
+							"    return;",
+							"}",
+							"",
+							"function defined(value) { return value !== null && value !== undefined; }",
+							"",
+							"var input = Number(defined(data.Input1) ? data.Input1 : environment.Input1);",
+							"",
+							"tests[\"Request succeeded\"] = responseCode.code === 200;",
+							"tests[\"Input included\"] = resultObject.input !== null && resultObject.input !== undefined;",
+							"tests[\"Input is a number\"] = resultObject.input.constructor === Number;",
+							"tests[\"Input is correct\"] = resultObject.input === input;",
+							"tests[\"Correct result\"] = resultObject.result === (input * input);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:{{LocalhostPort}}/api/1.0/math/square/{{Input1}}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Takes an input number and requests a Square operation."
+			},
+			"response": []
+		},
+		{
+			"name": "Accumulate 0",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var resultObject;",
+							"",
+							"try",
+							"{",
+							"    resultObject = JSON.parse(responseBody);",
+							"}",
+							"catch (ex)",
+							"{",
+							"    console.log(\"Unexpected response body: \" + ex);",
+							"    console.log(responseBody);",
+							"    ",
+							"    return;",
+							"}",
+							"",
+							"var input = 0;",
+							"",
+							"tests[\"Request succeeded\"] = responseCode.code === 200;",
+							"tests[\"Input included\"] = resultObject.input !== null && resultObject.input !== undefined;",
+							"tests[\"Input is a number\"] = resultObject.input.constructor === Number;",
+							"tests[\"Input is correct\"] = resultObject.input === input;",
+							"",
+							"postman.setEnvironmentVariable(\"AccumulatedValue\", resultObject.result);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:{{LocalhostPort}}/api/1.0/math/accumulate",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"data\": 0\n}"
+				},
+				"description": "Send 0 to the server to accumulate; the response will tell us the currently accumulated value."
+			},
+			"response": []
+		},
+		{
+			"name": "Accumulate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var resultObject;",
+							"",
+							"try",
+							"{",
+							"    resultObject = JSON.parse(responseBody);",
+							"}",
+							"catch (ex)",
+							"{",
+							"    console.log(\"Unexpected response body: \" + ex);",
+							"    console.log(responseBody);",
+							"    ",
+							"    return;",
+							"}",
+							"",
+							"function defined(value) { return value !== null && value !== undefined; }",
+							"",
+							"var input = Number(defined(data.Input1) ? data.Input1 : environment.Input1),",
+							"    expectedResult = Number(environment.AccumulatedValue) + input;",
+							"",
+							"tests[\"Request succeeded\"] = responseCode.code === 200;",
+							"tests[\"Input included\"] = resultObject.input !== null && resultObject.input !== undefined;",
+							"tests[\"Input is a number\"] = resultObject.input.constructor === Number;",
+							"tests[\"Input is correct\"] = resultObject.input === input;",
+							"tests[\"Correct result\"] = resultObject.result === expectedResult;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:{{LocalhostPort}}/api/1.0/math/accumulate",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"data\": {{Input1}}\n}"
+				},
+				"description": "Send a specific amount to the server to accumulate it."
+			},
+			"response": []
+		}
+	]
+}

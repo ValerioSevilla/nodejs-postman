@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "node index.js",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "sh postman.sh"
 	},
 	"repository": {
 		"type": "git",
@@ -19,6 +19,9 @@
 		"app-module-path": "^2.2.0",
 		"body-parser": "^1.16.0",
 		"express": "^4.14.1"
+	},
+	"devDependencies": {
+		"newman": "^3.4.3"
 	},
 	"author": "Valerio Sevilla",
 	"license": "ISC",
