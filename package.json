@@ -24,7 +24,7 @@
 		"newman": "^3.4.3"
 	},
 	"author": "Valerio Sevilla",
-	"license": "ISC",
+	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/ValerioSevilla/nodejs-postman/issues"
 	},
