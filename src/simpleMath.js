@@ -6,6 +6,7 @@ module.exports = (() => {
 	class SimpleMath {
 
 		constructor() {
+			this._accumulator = 0;
 		}
 
 		add(input1, input2) {
@@ -33,6 +34,13 @@ module.exports = (() => {
 				input: input,
 				result: input * input
 			};
+		}
+
+		accumulate(input) {
+			return {
+				input: input,
+				result: (this._accumulator += input)
+			}
 		}
 
 	}

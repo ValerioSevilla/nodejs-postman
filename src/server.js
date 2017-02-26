@@ -41,6 +41,13 @@ module.exports = (() => {
 				res.send(math.square(input));
 			});
 
+			server.post('/math/accumulate', function(req, res) {
+				var params = req.body,
+					input = Number(params.data);
+
+				res.send(math.accumulate(input));
+			});
+
 			server.listen(process.env.PORT);
 			server.use (function (error, request, response, next) {
 				response.status(400).send("Error: " + error);
