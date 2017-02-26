@@ -1,0 +1,27 @@
+{
+	"name": "nodejs-postman",
+	"version": "1.0.0",
+	"description": "Example of a Node.js server exposing a simple REST API and tests for that API using Postman",
+	"main": "index.js",
+	"scripts": {
+		"start": "node index.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ValerioSevilla/nodejs-postman.git"
+	},
+	"keywords": [
+		"postman",
+		"rest"
+	],
+	"dependencies": {
+		"express": "^4.14.1"
+	},
+	"author": "Valerio Sevilla",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/ValerioSevilla/nodejs-postman/issues"
+	},
+	"homepage": "https://github.com/ValerioSevilla/nodejs-postman#readme"
+}
