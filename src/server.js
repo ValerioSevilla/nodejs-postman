@@ -3,35 +3,50 @@
 
 module.exports = (() => {
 
-	var express = require('express');
+	var express = require('express'),
+		bodyParser = require('body-parser'),
+		SimpleMath = require('src/simpleMath');
 
 	class Server {
 
 		constructor() {
 			this._server = express();
-			// eslint-disable-next-line
-			this._router = express.Router();
-		}
-
-		applyRoutes() {
-			var routerInstance = new Router();
-			routerInstance.apply(this._router);
-		}
-
-		handleErrors() {
-			this._server.use(function (error, request, response, next) {
-				if (error instanceof SyntaxError) {
-					response.status(400).send(syntaxErrorMessage);
-				} else {
-					console.log(error);
-					response.status(500).send(unknownErrorMessage);
-				}
-			});
+			this._server.use(bodyParser.urlencoded({extended: true}));
+			this._server.use(bodyParser.json());
+			this._math = new SimpleMath();
 		}
 
 		init() {
 			var me = this,
-				server = me._server;
+				server = me._server,
+				math = me._math;
+
+			server.get('/math/add/:input1/:input2', function(req, res) {
+				var input1 = Number(req.params.input1),
+					input2 = Number(req.params.input2);
+
+				res.send(math.add(input1, input2));
+			});
+
+			server.get('/math/subtract/:input1/:input2', function(req, res) {
+				var input1 = Number(req.params.input1),
+					input2 = Number(req.params.input2);
+
+				res.send(math.subtract(input1, input2));
+			});
+
+			server.get('/math/square/:input', function(req, res) {
+				var input = Number(req.params.input);
+
+				res.send(math.square(input));
+			});
+
+			server.post('/math/accumulate', function(req, res) {
+				var params = req.body,
+					input = Number(params.data);
+
+				res.send(math.accumulate(input));
+			});
 
 			server.listen(process.env.PORT);
 			server.use (function (error, request, response, next) {
